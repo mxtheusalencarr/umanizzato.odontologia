@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umanizzato</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #1D1D1B;
+      color: #1D1D1B;
+      scroll-behavior: smooth;
+    }
+
+    /* ----------- MENU SUPERIOR ----------- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+    }
+
+    header img {
+      height: 45px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #1D1D1B;
+      margin: 0 18px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #F5B9B0;
+    }
+
+   /* HERO COMPLETAMENTE NOVA */
+   .hero {
+  height: 100vh;
+  background: url("imagens/hero.jpg") no-repeat;
+  background-size: cover;
+  background-position: center -45%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+}
+
+.hero-content {
+  margin-top: 200px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  max-width: 520px;
+}
+
+.hero-content h1 {
+  display: flex;
+  flex-direction: column;
+  .titulo-principal {
+  font-size: 3rem;
+
+}
+
+.titulo-secundario {
+  font-size: 2.2rem;
+  font-weight: 300;
+  opacity: .9;
+}
+  font-size: 3rem;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.hero-content p {
+  font-size: 1.15rem;
+  margin-bottom: 30px;
+  opacity: .9;
+}
+
+.hero-btn {
+  background: #F5B9B0;
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: .3s;
+}
+
+.hero-btn:hover {
+  background: #F5B9B0;
+  color: #1D1D1B;
+}
+
+/* animação */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+    /* ----------- SEÇÕES ----------- */
+   /* Remove o espaçamento superior gigante que estava empurrando a seção para baixo */
+#procedimentos {
+  padding-top: 0 !important;
+  margin-top: -80px !important;
+  position: relative;
+  z-index: 20;
+}
+
+/* Agora os cards sobem e invadem a área cinza */
+.procedimentos-grid {
+  margin-top: -160px !important; /* sobe os cards por cima do cinza */
+  position: relative;
+  z-index: 50;
+}
+
+/* CARD ALTO E PREMIUM */
+/* === CARDS FLIP 3D === */
+
+.proced-card {
+  width: 260px;
+  height: 380px;
+  perspective: 1000px; /* habilita efeito 3D */
+}
+
+.proced-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform .8s;
+  transform-style: preserve-3d;
+}
+
+.proced-card.flip .proced-inner {
+  transform: rotateY(180deg);
+}
+
+/* --- Frente do card --- */
+.proced-front,
+.proced-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Frente = igual estava antes */
+.proced-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proced-front .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.55));
+}
+
+.proced-front p.mini,
+.proced-front h3 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  text-align: center;
+}
+
+.proced-front p.mini {
+  top: 58%;
+  font-size: .9rem;
+}
+
+.proced-front h3 {
+  top: 66%;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+/* --- Verso do card --- */
+.proced-back {
+  background: #FFFFFF;
+  transform: rotateY(180deg);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.proced-back h4 {
+  font-size: 1.4rem;
+  color: #F5B9B0;
+  margin-bottom: 12px;
+}
+
+.proced-back p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+/* IMAGEM DE FUNDO */
+
+/* TODAS as imagens do VERSO dos cards */
+.proced-back img {
+  width: 90%;
+  height: auto;
+  max-height: 120px;   /* deixa formato paisagem */
+  border-radius: 12px;
+  margin: 12px auto 0;
+  object-fit: contain;
+  display: block;
+}
+
+/* IMAGEM MAIOR — CARD SAÚDE BUCAL */
+.proced-card[data-card="saude"] .foto-back {
+  max-height: 240px;   /* AUMENTA BEM */
+  object-fit: cover;
+}
+
+/* OVERLAY ESCURO */
+.proced-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.10), rgba(0,0,0,0.55));
+}
+
+/* TEXTO DE CIMA */
+.proced-card p.mini {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.9);
+  font-size: .9rem;
+  margin: 0;
+}
+
+/* TÍTULO GRANDE */
+.proced-card h3 {
+  position: absolute;
+  top: 66%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.6rem;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+/* HOVER PREMIUM */
+.proced-card:hover {
+  transform: translateY(-8px);
+}
+  
+/* SEÇÃO INTERMEDIÁRIA — PREMIUM */
+
+/* Subtítulo premium */
+
+.subtitulo-clinica {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 300;
+  color: #F5B9B0;
+  text-align: center;
+  margin-bottom: 10px;
+  letter-spacing: 1.2px;
+
+  margin-top: 50px;   /* 🔥 AQUI: afasta dos cards */
+}
+
+/* Título principal */
+.secao-transformacao h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: #F5B9B0;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* Texto do parágrafo */
+.secao-transformacao p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.9;
+  color: #fff;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 80px;
+  margin-bottom: 50px;
+}
+
+/* SEÇÃO AVALIAÇÕES */
+/* SEÇÃO AVALIAÇÕES COM IMAGEM DE FUNDO */
+#avaliacoes {
+  position: relative;
+  padding: 120px 0;
+  text-align: center;
+  background-image: url("imagens/avaliacoes.jpg"); /* 👉 SUA FOTO AQUI */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* ESCURECIMENTO SUAVE PARA DAR LEITURA */
+#avaliacoes::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35); /* pode aumentar/diminuir */
+  z-index: 1;
+}
+
+/* TÍTULO */
+#avaliacoes h2 {
+  position: relative;
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.6rem;
+  color: #FFFFFF;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+/* GRID — agora por cima da imagem */
+.avaliacoes-container {
+  position: relative;
+  z-index: 2; /* fica acima da imagem */
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  gap: 30px;
+  justify-content: center;
+}
+
+/* CONTAINER das caixas */
+.avaliacoes-container {
+  display: grid;
+  grid-template-columns: repeat(2, 0.8fr); /* 3 colunas */
+  grid-auto-rows: 1fr; /* linhas iguais */
+  gap: 30px;
+}
+
+/* CAIXINHAS */
+/* GRID — mantém 3 colunas centradas */
+.avaliacoes-container {
+  display: grid;
+  grid-template-columns: repeat(3, 250px); /* largura FIXA */
+  gap: 30px;
+  justify-content: center; /* centraliza tudo */
+}
+
+/* CAIXA QUADRADA */
+.avaliacao-box {
+  width: 250px;
+  height: 170px;
+
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  text-align: left;
+  border: 1px solid #E5D5B8;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+/* Linha decorativa */
+.section-divider {
+  width: 80px;
+  height: 3px;
+  background-color: #F5B9B0; /* bege premium da paleta */
+  margin: 0 auto 40px;
+  border-radius: 4px;
+}
+
+    .linha-dourada {
+  width: 100%;               /* tamanho da linha */
+  height: 1px;              /* espessura bem fina */
+  background-color: #F5B9B0; /* dourado da sua paleta */
+  border: none;
+  margin: 20px auto;        /* centraliza e dá espaçamento */
+  opacity: 0.7;             /* leve transparência opcional */
+}
+
+#sobre {
+  background-color: #1D1D1B;
+  padding: 80px 10%;
+}
+
+.sobre-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.sobre-img img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.sobre-texto {
+  flex: 1;
+  min-width: 300px;
+}
+
+.sobre-texto h2 {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-size: 2.8rem;
+  color: #F5B9B0;
+  margin-bottom: 2rem;
+}
+
+.sobre-texto p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1rem;
+  color: #fff;
+  line-height: 1.8;
+}
+    /* ----------- DEPOIMENTOS ----------- */
+  /* Seção Avaliações */
+#avaliacoes {
+  background-color: #f6efe5; /* tom bege já usado no site */
+  padding: 60px 0;
+  text-align: center;
+}
+
+/* Título da seção */
+#Feedbacks h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2.4rem;
+  color: #FFFFFF;
+  margin-bottom: 16px;
+}
+
+/* Linha decorativa */
+.section-divider {
+  width: 80px;
+  height: 3px;
+  background-color: #d4a373; /* bege premium da paleta */
+  margin: 0 auto 40px;
+  border-radius: 4px;
+}
+
+/* Grid dos depoimentos */
+.procedimentos-grid {
+  margin-top: -80px;   /* sobe o bloco inteiro */
+  position: relative;
+  z-index: 10;
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+}
+
+/* Cada bloco */
+.depoimento {
+  background-color: #fff;
+  padding: 30px 24px;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.depoimento:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+/* Nome do paciente */
+.depoimento h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: #a67843; /* dourado/bege sofisticado */
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+/* Estrelas */
+.estrelas {
+  color: #d4a373;
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+}
+
+/* Texto do depoimento */
+.depoimento p {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* ===== CONTATO PREMIUM ===== */
+.contato-premium {
+  background: 
+  linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+  url("imagens/entreemcontato.jpg") center 30% / cover no-repeat;
+
+  padding: 80px 0;
+  position: -45;
+}
+
+.contato-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* TÍTULO */
+.contato-premium h2 {
+  font-size: 2.8rem;
+  font-weight: 300;
+  color: #F5B9B0;
+  margin-bottom: 25px;
+}
+
+/* TEXTO */
+.contato-texto {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: #FFF;
+  max-width: 650px;
+  margin: 0 auto 60px;
+}
+
+/* BOTÕES */
+.contato-botoes {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-contato {
+  padding: 14px 38px;
+  border-radius: 40px;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 35px 10%;
+  text-align: center;
+}
+
+footer p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  color: #CFCFCF;
+  margin-bottom: 10px;
+}
+
+footer a {
+  color: #F5B9B0;
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 8px;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #FFFFFF;
+}
+
+footer {
+  padding-top: 40px;
+  padding-bottom: 10px; /* diminui bem o espaço inferior */
+}
+
+footer p,
+footer span {
+  margin-bottom: 0; /* remove margem extra do texto */
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  footer {
+    padding: 25px 6%;
+  }
+}
+
+/* WHATSAPP */
+.btn-contato.whatsapp {
+  background: #F5B9B0;
+  color: #fff;
+}
+
+.btn-contato.whatsapp:hover {
+  background: #F5B9B0;
+  color: #1D1D1B;
+}
+
+/* INSTAGRAM */
+.btn-contato.instagram {
+  background: #F5B9B0;
+  color: #fff;
+}
+
+.btn-contato.instagram:hover {
+  background: #F5B9B0;
+  color: #1D1D1B;
+}
+
+/* BOTÃO FLUTUANTE WHATSAPP */
+.whatsapp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  text-decoration: none;
+}
+
+/* BOLINHA */
+.whatsapp-icon {
+  width: 56px;
+  height: 56px;
+  background: #f3c2b7;
+  color: #ffffff;
+  font-size: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+
+  transition: transform 0.3s ease;
+}
+
+/* HOVER SUAVE */
+.whatsapp-float:hover .whatsapp-icon {
+  transform: scale(1.08);
+}
+
+/* BALÃO DE TEXTO */
+.whatsapp-tooltip {
+  position: absolute;
+  right: 70px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+
+  padding: 8px 14px;
+  border-radius: 20px;
+
+  font-size: 14px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* MOSTRA O BALÃO NO HOVER */
+.whatsapp-float:hover .whatsapp-tooltip {
+  opacity: 1;
+}
+
+
+    /* ----------- ANIMAÇÕES ----------- */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 950px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-text {
+        max-width: 100%;
+        margin-bottom: 40px;
+      }
+
+      .hero-img img {
+        max-width: 400px;
+      }
+
+      nav a {
+        margin: 0 8px;
+      }
+    }
+
+    .modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 40px 50px;
+  border-radius: 18px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.2);
+  animation: fadeIn .3s ease;
+  text-align: center;
+}
+
+#closeModal {
+  font-size: 30px;
+  font-weight: bold;
+  float: right;
+  cursor: pointer;
+  color: #AA7413;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================
+   RESPONSIVIDADE — CELULAR
+   ============================ */
+   @media (max-width: 768px) {
+
+    /* HERO */
+.hero {
+  height: 90vh;
+  background-position: center;
+  padding: 0;
+}
+
+.hero-text {
+  top: 65%;
+  width: 90%;
+}
+
+/* PROCEDIMENTOS — vira 1 card por linha */
+.procedimentos-grid {
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-top: -40px !important; /* ajusta sobreposição */
+}
+
+.proced-card {
+  width: 85%;
+  height: 340px;
+}
+
+/* SEÇÃO TRANSFORMAÇÃO */
+.secao-transformacao h3,
+.secao-transformacao h2,
+.secao-transformacao p {
+  padding: 0 20px;
+}
+
+/* AVALIAÇÕES — vira 1 por linha */
+.avaliacoes-container {
+  grid-template-columns: 1fr; 
+  gap: 20px;
+}
+
+.avaliacao-box {
+  width: 85%;
+  height: auto; /* deixa natural para caber texto */
+  margin: 0 auto;
+}
+
+/* SOBRE — imagem sobe, texto desce */
+.sobre-container {
+  flex-direction: column;
+  text-align: center;
+}
+
+.sobre-img img {
+  max-width: 90%;
+}
+
+/* CONTATO */
+.contato-links {
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contato-btn {
+  width: 80%;
+  justify-content: center;
+}
+}
+
+/* ============================
+   MENU SUPERIOR RESPONSIVO
+   ============================ */
+
+/* ÍCONE DO MENU — escondido no desktop */
+.menu-mobile-icon {
+  display: none;
+}
+
+   @media (max-width: 768px) {
+
+header {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 12px 20px !important;
+}
+
+/* botão hambúrguer aparece */
+.menu-mobile-icon {
+  display: block;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #1D1D1B;
+  z-index: 2001;
+}
+
+/* MENU MOBILE FECHADO */
+nav {
+  position: fixed;
+  top: 70px;
+  right: -100%;
+  width: 70%;
+  height: 100vh;
+  background: #ffffff;
+  padding: 40px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  box-shadow: -4px 0 15px rgba(0,0,0,0.15);
+  transition: right .35s ease;
+  z-index: 2000;
+}
+
+/* MENU ABERTO */
+nav.active {
+  right: 0;
+}
+
+nav a {
+  margin: 0 !important;
+  font-size: 1.25rem;
+  padding: 10px 5px;
+  display: block;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+/* esconde o menu inline padrão */
+header nav {
+  position: fixed;
+}
+}
+
+  </style>
+</head>
+
+<a
+  href="https://wa.me/55SEUNUMEROAQUI"
+  class="whatsapp-float"
+  target="_blank"
+  aria-label="Entre em contato pelo WhatsApp"
+>
+  <span class="whatsapp-tooltip">Entre em contato</span>
+
+  <div class="whatsapp-icon">
+    ☎
+  </div>
+</a>
+
+
+<body>
+
+  <!-- MENU -->
+  <header>
+    <img src="imagens/logo.png" alt="Logo Umanizzato">
+    <div class="menu-mobile-icon" id="menu-btn">
+      ☰
+    </div>    
+    <nav id="menu">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#procedimentos">Procedimentos</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-overlay"></div>
+  
+    <div class="hero-content">
+      <h1>
+        <span class="titulo">Mais do que sorrisos, cuidamos de pessoas</span>
+      </h1>
+      
+      <p></p>
+    </div>
+  </section>  
+
+  <!-- PROCEDIMENTOS -->
+  <section id="procedimentos">
+  
+    <div class="procedimentos-grid">
+
+      <!-- CONSULTA (este NÃO vira, ele leva ao contato) -->
+      <div class="proced-card" id="card-consulta">
+        <div class="proced-inner">
+          <div class="proced-front">
+            <img src="imagens/proc3.jpg">
+            <div class="overlay"></div>
+            <p class="mini">Agende sua</p>
+            <h3>Consulta</h3>
+          </div>
+        </div>
+      </div>
+
+    
+      <!-- SAÚDE BUCAL -->
+      <div class="proced-card" data-card="saude">
+        <div class="proced-inner">
+          <div class="proced-front">
+            <img src="imagens/saudebucal.jpg">
+            <div class="overlay"></div>
+            <p class="mini">Tratamentos de</p>
+            <h3>Reabilitação Oral</h3>
+          </div>
+    
+          <div class="proced-back">
+          <p>Cuidamos da saúde bucal com foco em prevenção e bem-estar. Aqui você encontra prótese protocolo, restaurações e outros procedimentos essenciais</p>
+            <img src="imagens/backsaude.jpg" class="foto-back">
+          </div>
+        </div>
+      </div>
+    
+      <!-- ESTÉTICA -->
+      <div class="proced-card" data-card="estetica">
+        <div class="proced-inner">
+          <div class="proced-front">
+            <img src="imagens/proc1.jpg">
+            <div class="overlay"></div>
+            <p class="mini">Tratamentos de</p>
+            <h3>Estética Dental</h3>
+          </div>
+    
+          <div class="proced-back">
+            <p>Utilizamos técnicas avançadas para harmonizar o seu sorriso. Aqui você encontra Clareamento, Facetas, Gengivoplastia e outros procedimentos que elevam a estética do seu sorriso</p>
+            <img src="imagens/backestetica.jpg" class="foto-back-estetica">
+          </div>
+        </div>
+      </div>
+    
+      <!-- Invisalign -->
+      <div class="proced-card" data-card="Invisalign">
+        <div class="proced-inner">
+          <div class="proced-front">
+            <img src="imagens/invisalign.jpg">
+            <div class="overlay"></div>
+            <p class="mini">Tratamento com</p>
+            <h3>Invisalign</h3>
+          </div>
+    
+          <div class="proced-back">
+            <p>Invisalign são alinhadores transparentes, confortáveis e removíveis para corrigir o posicionamento dos dentes de forma discreta e eficaz. Cada etapa é planejada digitalmente, garantindo previsibilidade, conforto e resultados naturais ao longo do tratamento.</p>
+          </div>
+        </div>
+      </div>
+    
+    </div>    
+  </section>
+  
+  <!--SEÇAO TEXTO LONGO-->
+
+  <section id="transformacao" class="secao-transformacao">
+  
+    <p>
+      Na Umanizzato Odontologia, cada atendimento começa com escuta, respeito e empatia.
+      Acreditamos que cuidar da saúde bucal vai muito além de técnicas e procedimentos
+      é sobre entender histórias, necessidades e expectativas de cada paciente.
+      <br><br>
+      Nosso compromisso com a humanização está presente em todos os detalhes: desde a primeira conversa até o acompanhamento pós-tratamento.
+      Criamos um ambiente acolhedor, onde o paciente se sente seguro, confortável e confiante em cada etapa do cuidado.
+      <br><br>
+      Unimos tecnologia, excelência clínica e um olhar verdadeiramente humano para entregar resultados que respeitam a individualidade de cada sorriso. 
+      Aqui, o paciente não é apenas atendido — ele é cuidado.
+    </p>
+  
+  </section>
+  
+  <!-- AVALIAÇÕES -->
+<section id="avaliacoes" class="avaliacoes">
+  
+  <h2 class="titulo-avaliacoes">Feedbacks</h2>
+
+  <div class="avaliacoes-container">
+
+    <div class="avaliacao-box">
+      <h3>Ludmilla Souza</h3>
+      <p>Ótimos profissionais com atendimento personalizado e ambiente aconchegante!
+     </p>
+    </div>
+
+    <div class="avaliacao-box">
+      <h3>Matheus Melo</h3>
+      <p>Ambiente acolhedor, arrumado. Atendimento excelente. 
+        Sem dúvidas a melhor clínica com os melhores profissionais.
+      </p>
+    </div>
+
+    <div class="avaliacao-box">
+      <h3>Bruno Goveia</h3>
+      <p>Excelentes profissionais, fui muito bem atendido. Muito obrigado por tudo! Super recomendo!</p>
+    </div>
+
+    <div class="avaliacao-box">
+      <h3>Laizia Nascimento</h3>
+      <p>Eu adoro o atendimento e o local é muito acolhedor. Me sinto em casa, é ótimo!</p>
+    </div>
+
+    <div class="avaliacao-box">
+      <h3>Natalia Nogueira</h3>
+      <p>A Sarah e o Daniel são otimos profissionais! 
+        Não abro mão deles pra cuidar do meu sorriso e da minha saude bucal!</p>
+    </div>
+
+    <div class="avaliacao-box">
+      <h3>Maria Luciene</h3>
+      <p>Lugar maravilhoso, profissionais atenciosos. 
+        Melhor clínica que já visitei, sempre sou muito bem atendida.</p>
+    </div>
+
+  </div>
+</section>
+
+  
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="sobre-container">
+      <div class="sobre-img">
+        <img src="imagens/sobre.jpg" alt=>
+      </div>
+      <div class="sobre-texto">
+        <h2>Nossa história</h2>
+        <p>
+          A Umanizzato Odontologia nasceu do encontro de dois dentistas, Dr. Daniel e Dra. Sarah, unidos pela sensibilidade no cuidado e por uma mesma forma de enxergar a odontologia.
+          <br><br>
+          Mais do que compartilhar a profissão e a vida, eles passaram a dividir um propósito: oferecer uma odontologia verdadeiramente humana, respeitosa e acolhedora. 
+          Dessa união surgiu a Umanizzato um espaço em que excelência técnica e empatia caminham lado a lado, e o paciente é visto além do sorriso.
+          <br><br>
+          A Umanizzato é o reflexo dessa história. Um projeto construído com afeto, dedicação e alto rigor clínico, que acredita que cuidar da saúde bucal é, acima de tudo, cuidar de pessoas.
+        </p>
+      </div>
+    </div>
+  </section>
+  <hr class="linha-dourada">
+
+  <section id="contato" class="contato-premium">
+    <div class="contato-container">
+  
+      <h2>Entre em Contato</h2>
+  
+      <p class="contato-texto">
+        Agende sua consulta e sinta a diferença de um atendimento verdadeiramente humano.
+        Estamos prontos para ouvir você e cuidar do seu sorriso com atenção e excelência.
+      </p>
+  
+      <div class="contato-botoes">
+        <a 
+          href="https://wa.me/5521985828" 
+          target="_blank" 
+          class="btn-contato whatsapp">
+          WhatsApp
+        </a>
+        <a 
+    href="https://www.instagram.com/umanizzato.odontologia/" 
+    target="_blank" 
+    class="btn-contato instagram">
+    Instagram
+  </a>
+</div> 
+  
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Umanizzato Odontologia. Todos os direitos reservados.</p>
+    <p><a href="#">Instagram</a> | <a href="#">Whatsapp</a></p>
+  </footer>
+
+  <script>
+    // Animação dos depoimentos ao rolar
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.depoimento').forEach(el => observer.observe(el));
+  </script>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal">&times;</span>
+    <h2 id="modal-title"></h2>
+    <p id="modal-text"></p>
+  </div>
+</div>
+
+<script>
+  // FLIP nos cards
+  document.querySelectorAll('.proced-card').forEach(card => {
+    const type = card.dataset.card;
+
+    // consulta NÃO vira
+    if (card.id === "card-consulta") return;
+
+    card.addEventListener("click", () => {
+      card.classList.toggle("flip");
+    });
+  });
+
+  // Card "Agende sua consulta" leva para o CONTATO
+  document.getElementById("card-consulta").addEventListener("click", () => {
+    document.querySelector("#contato").scrollIntoView({ behavior: "smooth" });
+  });
+</script>
+
+<script>
+  const menuBtn = document.getElementById("menu-btn");
+  const menu = document.getElementById("menu");
+
+  menuBtn.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+</script>
+
+</body>
+</html>
